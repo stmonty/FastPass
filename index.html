@@ -16,6 +16,12 @@ Password: <input type="password" id="psw" value="">
 function display() {
   var x = document.getElementById("psw").value;
   document.getElementById("demo").innerHTML = x;
+  var upper = (x.match(/[A-Z]/g) || []).length;
+  var lower = (x.match(/[a-z]/g) || []).length;
+  var numbers = (x.match(/[0-9]/g) || []).length;
+  alert(upper);
+  alert(lower);
+  alert(numbers);
 }
 </script>
 
