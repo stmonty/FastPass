@@ -10,15 +10,20 @@ Password: <input type="password" id="psw" value="">
 
 <button onclick="display()">Try it</button>
 
-<p id="demo"></p>
+<p id="upper"></p>
+<p id="lower"></p>
+<p id="numbers"></p>
 
 <script>
 function display() {
   var x = document.getElementById("psw").value;
-  var upper = ((x.match(/[A-Z]/g) || []).length).tostring();
+  var upper = (x.match(/[A-Z]/g) || []).length;
   var lower = (x.match(/[a-z]/g) || []).length;
   var numbers = (x.match(/[0-9]/g) || []).length;
-  document.getElementById("demo").innerHTML = upper;
+  document.getElementById("upper").innerHTML = upper.tostring();
+  document.getElementById("lower").innerHTML = lower.tostring();
+  document.getElementById("numbers").innerHTML = numbers.tostring();
+  alert(upper)
 }
 </script>
 
