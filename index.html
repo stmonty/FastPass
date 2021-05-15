@@ -11,8 +11,6 @@ Password: <input type="password" id="psw" value="">
 <button onclick="display()">Try it</button>
 
 <p id="upper"></p>
-<p id="lower"></p>
-<p id="numbers"></p>
 
 <script>
 function display() {
@@ -20,10 +18,10 @@ function display() {
   var upper = (x.match(/[A-Z]/g) || []).length;
   var lower = (x.match(/[a-z]/g) || []).length;
   var numbers = (x.match(/[0-9]/g) || []).length;
-  document.getElementById("upper").innerHTML = upper.tostring();
-  document.getElementById("lower").innerHTML = lower.tostring();
-  document.getElementById("numbers").innerHTML = numbers.tostring();
-  alert(upper);
+  var length = x.length;
+  var spec = (x.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []).length;
+  var score = 3*upper + lower + 2*numbers + length + 4*spec;
+  document.getElementById("upper").innerHTML = score;
 }
 </script>
 
