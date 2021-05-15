@@ -15,11 +15,10 @@ Password: <input type="password" id="psw" value="">
 <script>
 function display() {
   var x = document.getElementById("psw").value;
-  
-  var upper = (x.match(/[A-Z]/g) || []).length;
+  var upper = ((x.match(/[A-Z]/g) || []).length).tostring();
   var lower = (x.match(/[a-z]/g) || []).length;
   var numbers = (x.match(/[0-9]/g) || []).length;
-  document.getElementById("demo").innerHTML = upper.tostring() + lower.toString() + numbers.toString();
+  document.getElementById("demo").innerHTML = upper;
 }
 </script>
 
