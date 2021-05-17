@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>A demonstration of how to access a Password Field</h3>
+Username: <input type="username" id="usr" value="">
+Password: <input type="password" id="psw" value="">
+
+<p>Click the button to get the password of the password field.</p>
+
+<button onclick="display()">Try it</button>
+<div id="container"></div>
+<p id="upper"></p>
+<p id="finished"></p>
+<script>
+function download(filename, text) {
+    
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    document.body.removeChild(element);
+}
+
+var scores = [];
+function display() {
+  if (scores.length <= 10){
+  	var x = document.getElementById("psw").value;
+  	var upper = (x.match(/[A-Z]/g) || []).length;
+  	var lower = (x.match(/[a-z]/g) || []).length;
+  	var numbers = (x.match(/[0-9]/g) || []).length;
+  	var length = x.length;
+  	var spec = (x.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []).length;
+  	var score = 3*upper + lower + 2*numbers + length + 4*spec;
+  	document.getElementById("upper").innerHTML = score;
+  	var d = new Date();
+  	var day = d.getDay();
+  	var hour = d.getHours();
+  	var minute = d.getMinutes();
+  	scores.push(score);
+  }
+  else {
+	var d = new Date();
+	var day = d.getDate();
+ 	var f_name = "Day " + day + " Password Scores" + ".txt";
+        document.getElementById("upper").innerHTML = "You Are Done For Today!";
+	var button = document.createElement('button');
+	button.type = 'button';
+    	button.innerHTML = 'Download Your Scores';
+	var element = document.createElement('a');
+	var text = scores.toString();
+    	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    	element.setAttribute('download', f_name);
+	var button = document.createElement("button");
+	button.appendChild(document.createTextNode("Download Your Scores"));
+	element.appendChild(button);
+	var container = document.getElementById('container');
+    	container.appendChild(element);
+  }
+}
+</script>
+
+</body>
+</html>
