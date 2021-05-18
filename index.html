@@ -59,6 +59,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <div id="container"></div>
         <p id="upper"></p>
         <p id="finished"></p>
+	<p id="suggestion"></p>
       </p>
     </div>
   </div>
@@ -81,14 +82,53 @@ function download(filename, text) {
 var scores = [];
 function display() {
   if (scores.length <= 10){
-  	var x = document.getElementById("psw").value;
+	var x = document.getElementById("psw").value;
   	var upper = (x.match(/[A-Z]/g) || []).length;
   	var lower = (x.match(/[a-z]/g) || []).length;
   	var numbers = (x.match(/[0-9]/g) || []).length;
   	var length = x.length;
+	var consecutive = 0;
+	var common = 0;
+	var chars = []
+	var unique = length;
+	for (let i=0;i<length;i++){
+		if (x[i] == x[i+1]){
+			consecutive += 1;
+		}
+		if (!(x[i] in chars)){
+			chars.push(x[i]);
+		}
+	}
+	unique = chars.length;
+	common = (x == "123456" || x == "123456789" || x == "qwerty" || x == "111111" || x == "password" || x == "abc" || x == "password1" || x == "picture1");
   	var spec = (x.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []).length;
-  	var score = 3*upper + lower + 2*numbers + length + 4*spec;
+  	var score = (3*upper + lower + 2*numbers + length + 4*spec - consecutive)*(unique/length);
+	if (common == 1){
+		score = 0;
+	}
   	document.getElementById("upper").innerHTML = score;
+	if (upper == 0){
+		document.getElementById("suggestion").innerHTML = "Add an upper case letter to your password";	
+
+	}
+	else if (numbers == 0){
+		document.getElementById("suggestion").innerHTML = "Add a number to your password";
+	}
+	else if (length < 6){
+		document.getElementById("upper").innerHTML = "Make your password longer";
+	}
+	else if (consecutive == 1){
+		document.getElementById("upper").innerHTML = "Don't have consective characters that are the same";
+	}
+	else if (unique/length < 0.7){
+		document.getElementById("upper").innerHTML = "Use more unique characters";
+	}
+	else if (common == 1){
+		document.getElementById("upper").innerHTML = "This password is too common, create another one";
+	}
+	else if (spec == 0){
+		document.getElementById("upper").innerHTML = "Add a special character (#,$,% etc.) to your password";
+	}
   	var d = new Date();
   	var day = d.getDay();
   	var hour = d.getHours();
