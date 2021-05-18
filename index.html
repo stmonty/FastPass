@@ -26,7 +26,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>PLEASE READ - TASK</h1>
-      <h5 class="w3-padding-32">You will be writing 10 passwords a day based on a prompt that will change daily.</h5>
+      <h5 class="w3-padding-32">You will be writing 10 unique passwords a day based on 10 phrases that will change daily.</h5>
 
       <p class="w3-text-grey">When you finish writing the passwords a download button will appear. Click the button to download a 
         simple text file containing some data. We will not save any of your passwords that you have written down, but please do not use any 
@@ -48,12 +48,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     </div>
 
     <div class="w3-twothird">
-      <h1>Let's say you're making a password for "Goggle.com"</h1>
-      <h5 class="w3-padding-32">Please write 10 passwords here. Make sure to click enter after each password!</h5>
+      <h1>No prompts/phrases today</h1>
+      <h5 class="w3-padding-32">Please write 10 unique passwords here. Make sure to click enter after each password!</h5>
 
       <p class="w3-text-grey">
         Password: <input type="password" id="psw" value="">
-        <button onclick="display()">Try it</button>
+        <button onclick="display()">Enter</button>
         <div id="container"></div>
         <p id="upper"></p>
         <p id="finished"></p>
@@ -106,26 +106,26 @@ function display() {
 	}
   	document.getElementById("upper").innerHTML = "Your password score is " + score;
 	if (upper == 0){
-		document.getElementById("suggestion").innerHTML = "Add an upper case letter to your password";	
+		document.getElementById("suggestion").innerHTML = "Try to add an upper case letter to your next password";	
 
 	}
 	else if (numbers == 0){
-		document.getElementById("suggestion").innerHTML = "Add a number to your password";
+		document.getElementById("suggestion").innerHTML = "Try to add a number to your next password";
 	}
 	else if (length < 6){
-		document.getElementById("upper").innerHTML = "Make your password longer";
+		document.getElementById("upper").innerHTML = "Try to make your next password longer";
 	}
 	else if (consecutive == 1){
-		document.getElementById("upper").innerHTML = "Don't have consective characters that are the same";
+		document.getElementById("upper").innerHTML = "For the next password don't have consecutive characters that are the same";
 	}
 	else if (unique/length < 0.7){
-		document.getElementById("upper").innerHTML = "Use more unique characters";
+		document.getElementById("upper").innerHTML = "For the next password use more unique characters";
 	}
 	else if (common == 1){
-		document.getElementById("upper").innerHTML = "This password is too common, create another one";
+		document.getElementById("upper").innerHTML = "This password uses a common phrase";
 	}
 	else if (spec == 0){
-		document.getElementById("upper").innerHTML = "Add a special character (#,$,% etc.) to your password";
+		document.getElementById("upper").innerHTML = "Try to add a special character (#,$,% etc.) to your next password";
 	}
   	var d = new Date();
   	var day = d.getDay();
