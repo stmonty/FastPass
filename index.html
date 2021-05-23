@@ -55,6 +55,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         Password: <input type="password" id="psw" value="">
         <button onclick="display()">Enter</button>
         <div id="container"></div>
+		<p id="finish"></p>
        <!-- <p id="upper"></p>
         <p id="finished"></p> -->
 	<p id="suggestion"></p>
@@ -137,7 +138,7 @@ function display() {
 	var d = new Date();
 	var day = d.getDate();
  	var f_name = "Day " + day + " Password Scores" + ".txt";
-        document.getElementById("upper").innerHTML = "You Are Done For Today!";
+        document.getElementById("finish").innerHTML = "You Are Done For Today!";
 	var button = document.createElement('button');
 	button.type = 'button';
     	button.innerHTML = 'Download Your Scores';
